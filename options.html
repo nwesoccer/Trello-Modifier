@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app ng-csp>
+    <head>
+        <title>Options</title>
+        <link rel="stylesheet" href="css/options.css" />
+    </head>
+
+    <body ng-controller="OptionsController">
+
+        <h1>Trello Modifier</h1>
+
+        <hr>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Board Id</th>
+                    <th>Description</th>
+                    <th>Overage Color</th>
+                    <th>Warning Color</th>
+                    <th>Message Color</th>
+                    <th>Message</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="board in boards">
+                    <td>
+                        <label for="{{board.id}}_enabled" class="slideThree">
+                            <input id="{{board.id}}_enabled" type="checkbox" ng-model="board.enabled" />
+                            <b></b>
+                        </label>
+                    </td>
+                    <td><input type="text" ng-model="board.id" /></td>
+                    <td><input type="text" ng-model="board.description" size="30" /></td>
+                    <td><input type="text" ng-model="board.overageColor" /><b style="background-color: {{board.overageColor}};"></b></td>
+                    <td><input type="text" ng-model="board.warningColor" /><b style="background-color: {{board.warningColor}};"></b></td>
+                    <td><input type="text" ng-model="board.messageColor" /><b style="background-color: {{board.messageColor}};"></b></td>
+                    <td><input type="text" ng-model="board.message" size="60" /></td>
+                    <td><a ng-click="remove(board.id)">&minus;</a></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                        <label for="newBoard_enabled" class="slideThree">
+                            <input id="newBoard_enabled" type="checkbox" ng-model="newBoard.enabled" />
+                            <b></b>
+                        </label>
+                    </td>
+                    <td><input type="text" ng-model="newBoard.id" /></td>
+                    <td><input type="text" ng-model="newBoard.description" /></td>
+                    <td><input type="text" ng-model="newBoard.overageColor" /><b style="background-color: {{newBoard.overageColor}};"></b></td>
+                    <td><input type="text" ng-model="newBoard.warningColor" /><b style="background-color: {{newBoard.warningColor}};"></b></td>
+                    <td><input type="text" ng-model="newBoard.messageColor" /><b style="background-color: {{newBoard.messageColor}};"></b></td>
+                    <td><input type="text" ng-model="newBoard.message" /></td>
+                    <td><a ng-click="add()">+</a></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <button ng-click="save()" disabled="{{saveButton.disabled}}">{{saveButton.text}}</button>
+
+        <div class="copy">Created by Nathan Edwards</div>
+
+    </body>
+    <script src="js/angular.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/options.js"></script>
+</html>

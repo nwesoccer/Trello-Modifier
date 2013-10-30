@@ -1,0 +1,29 @@
+{
+    "manifest_version": 2,
+
+    "name": "Trello Modifier",
+    "description": "Adds cool functionality to your Trello Boards.",
+    "version": "1.5",
+
+    "options_page": "options.html",
+
+    "icons": { "128": "images/icon128.png" },
+
+    "background": {
+        "scripts": ["js/background.js"]
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["https://trello.com/b/*"],
+            "css": ["css/main.css"],
+            "js": ["js/jquery.js", "js/main.js"],
+            "run_at": "document_idle"
+        }
+    ],
+
+    "browser_action": {
+        "default_icon": "images/icon38.png",
+        "default_title": "Trello Modifier"
+    }
+}
