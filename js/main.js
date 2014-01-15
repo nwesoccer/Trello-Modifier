@@ -1,8 +1,8 @@
 (function() {
     var currentBoardId;
     var oldLocation = location.href;
-    var titleReg = /.*\[([0-9]*)\]/;
-    var numCardsReg = /([0-9]*) .*/;
+    var titleReg = /(.*)\[([0-9]*)\]/;
+    var numReg = /([0-9]*).*/;
 
     $(document).ready(function() {
         DetectBoard();
@@ -44,7 +44,7 @@
                     .addClass('header-message')
                     .css('color', board.messageColor)
                     .html(board.message)
-                    .appendTo($('#board-header'));
+                    .appendTo($('.board-header'));
             }
 
             if (board.warningColor || board.overageColor) {
@@ -60,8 +60,8 @@
                 $('div.list').each(function() {
                     var list = $(this);
                     var header = list.find('div.list-header');
-                    var title = header.find('div.list-title h2');
-                    var numCards = header.find('p.num-cards');
+                    var title = header.find('h2.list-header-name');
+                    var numCards = header.find('p.list-header-num-cards');
 
                     if (title.length && numCards.length) {
                         observer.observe(title.get(0), config);
@@ -74,18 +74,30 @@
 
             function ListChanged(list) {
                 var header = list.find('div.list-header');
-                var title = header.find('div.list-title h2');
-                var numCards = header.find('p.num-cards');
+                var title = header.find('h2.list-header-name');
+                var numCards = header.find('p.list-header-num-cards');
+                var cardLimit = header.find('p.list-header-card-limit');
 
                 var titleMatches = title.text().match(titleReg);
 
-                if (titleMatches)
-                {
-                    var numCardsMatches = numCards.text().match(numCardsReg);
+                if (titleMatches && titleMatches.length > 1) {
+                    title.text(titleMatches[1]);
 
-                    if(numCardsMatches)
-                    {
-                        var limit = parseInt(titleMatches[1]);
+                    if (!cardLimit.length) {
+                        cardLimit = $('<p>').addClass('hide list-header-card-limit').text(titleMatches[2]);
+                        header.append(cardLimit);
+                    } else {
+                        cardLimit.text(titleMatches[2]);
+                    }
+                }
+
+                var cardLimitMatches = cardLimit.text().match(numReg);
+
+                if (cardLimitMatches) {
+                    var numCardsMatches = numCards.text().match(numReg);
+
+                    if(numCardsMatches) {
+                        var limit = parseInt(cardLimitMatches[0]);
                         var numCards = parseInt(numCardsMatches[0]);
 
                         list.removeClass('warning').removeClass('overage');

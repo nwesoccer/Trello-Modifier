@@ -1,6 +1,6 @@
 function OptionsController($scope) {
 
-    var defaultBoard = { id: '', description: '', enabled: true, overageColor: '#BF3030', warningColor: '#FFBF00', messageColor: '#BF3030', message: '' };
+    var defaultBoard = { id: '', description: '', enabled: true, overageColor: '#BF3030', warningColor: '#E6BF00', messageColor: '#E6BF00', message: '' };
 
     $scope.boards = JSON.parse(localStorage.getItem("boards")) || [];
     $scope.saveButton = { text: 'Save', disabled: '' };

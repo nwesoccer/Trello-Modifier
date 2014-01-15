@@ -1,6 +1,5 @@
 div.header-message {
     font-size: 20px;
-    font-weight: bold;
     padding-top: 13px;
     position: absolute;
     top: 0;
@@ -10,12 +9,12 @@ div.header-message {
     text-align: center;
 }
 
-div.list-header div.list-title {
+div.list-header h2.list-header-name {
     padding-left: 5px;
 }
 
-div.list.warning div.list-header div.list-title,
-div.list.overage div.list-header div.list-title,
+div.list.warning div.list-header h2.list-header-name,
+div.list.overage div.list-header h2.list-header-name,
 div.list.warning div.list-header textarea,
 div.list.overage div.list-header textarea {
     color: white;
