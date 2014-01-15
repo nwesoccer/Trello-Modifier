@@ -3,7 +3,7 @@
 
     "name": "Trello Modifier",
     "description": "Adds cool functionality to your Trello Boards.",
-    "version": "1.6",
+    "version": "1.7",
 
     "options_page": "options.html",
 

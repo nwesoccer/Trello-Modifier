@@ -21,6 +21,13 @@ div.list.overage div.list-header textarea {
     text-shadow: black 0px 0px 2px;
 }
 
+div.list.warning div.list-header span.list-header-card-display,
+div.list.overage div.list-header span.list-header-card-display {
+    color: white;
+    float: right;
+    text-shadow: black 0px 0px 2px;
+}
+
 div.list.warning a.open-card-composer,
 div.list.overage a.open-card-composer {
     color: white;

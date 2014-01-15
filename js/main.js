@@ -77,6 +77,7 @@
                 var title = header.find('h2.list-header-name');
                 var numCards = header.find('p.list-header-num-cards');
                 var cardLimit = header.find('p.list-header-card-limit');
+                var cardDisplay = header.find('span.list-header-card-display');
 
                 var titleMatches = title.text().match(titleReg);
 
@@ -85,7 +86,8 @@
 
                     if (!cardLimit.length) {
                         cardLimit = $('<p>').addClass('hide list-header-card-limit').text(titleMatches[2]);
-                        header.append(cardLimit);
+                        cardDisplay = $('<span>').addClass('list-header-card-display');
+                        header.append(cardLimit, cardDisplay);
                     } else {
                         cardLimit.text(titleMatches[2]);
                     }
@@ -99,6 +101,8 @@
                     if(numCardsMatches) {
                         var limit = parseInt(cardLimitMatches[0]);
                         var numCards = parseInt(numCardsMatches[0]);
+
+                        cardDisplay.text(numCards + '/' + limit);
 
                         list.removeClass('warning').removeClass('overage');
 
